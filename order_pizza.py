@@ -23,6 +23,7 @@ def get_contact_info(filler):
 
 #show information based on what was given	
 
+"""
 address = get_address() 
 
 print('\n' * 5)
@@ -41,13 +42,37 @@ menu = store.get_menu()
 
 print('\n' * 5)
 print(menu.display()) #prints entire menu with codes
+"""
 
 # Main Prompt
 
 print("Welcome to my pizza delivery script. \n Orders will be made using Dominos Pizza.")
 
-# address = get_address()
+# retrieves address
+while True:
+	address = get_address()
+	print(address.line1)
+	print(address.line2)
+	correct = input("Does this information look correct? (y/n): ")
+	if correct == 'y':
+		print("Awesome, let's continue.")
+		break
 
-print(address.line2)
-correct = input("Does this information look correct? (y/n): ")
+# retrieves contact information
+while True:
+	customer = get_contact_info(address)
+	print(customer.first_name) #add function to cleanly print details
+	correct = input("Does this information look correct? (y/n): ")
+	if correct == 'y':
+		print("Awesome, let's continue.")
+		break
+		
+store = address.closest_store()
 
+print('\n' * 5)
+print(store.data) #prints some data about the closest store
+
+menu = store.get_menu()
+
+print('\n' * 5)
+print(menu.display()) #prints entire menu with codes
