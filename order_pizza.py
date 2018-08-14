@@ -76,12 +76,25 @@ print(str(store.data) + '\n') #prints some data about the closest store
 # Gets menu and asks if the user wants the whole menu or just search
 menu = store.get_menu()
 while True:
-	menu_choice = input("Type 'see menu' or enter and item to search: ")
+	menu_choice = input("Type 'see menu', enter an item to search or 'done': ")
+	if menu_choice == 'done':
+		break
 	if menu_choice == 'see menu':
 		print(menu.display()) #prints entire menu with codes
 		break
 	# if menu.search(menu_choice) == '':
 		# print("No results shown.\n")
-	print(str(menu.search(menu_choice)))
+	print(str(menu.search(Name=menu_choice)))
 
-
+# Gets order together for the user
+order = Order(store, customer, address)
+while True:
+	order_choice = input("Would you like to add or remove an item? ")
+	if order_choice == 'add':
+		item = input("Enter an item to add to the order: ")
+		order.add_item(item)
+	if order_choice == 'remove':
+		item = input("Enter an item to remove from the order: ")
+		order.remove_item(item)
+	
+	
