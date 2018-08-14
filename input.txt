@@ -1,10 +1,18 @@
-1347 Angora Lake Road
-S Lake Tahoe
-CA
+1050 Columbus Ave
+Chico
+95926
 96150
 y
 a
 a
 a
 y
-coke
+Coke
+done
+add
+2LCOKE
+add
+2LDCOKE
+remove
+2LCOKE
+q
