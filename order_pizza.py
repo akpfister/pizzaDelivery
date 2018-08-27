@@ -100,5 +100,35 @@ while True:
 		order.remove_item(item)
 	print(order.data)
 	print('\n' * 2)
+
+"""
+this is to validate the order and give a price
+
+order.validate()
+order.price_url()
+"""
 	
-	
+# Gets card information ready for payment
+while True:
+	card_nu = input("Please enter the number of the card: ")
+	exp = input("Expiration date: ")
+	back_digits = input("CVV info: ")
+	zipcode = input("Zipcode: ")
+	print("Card number: " + card_nu + "\nExpiration Date: " + exp + "\nCVV: " + back_digits + "\nZipcode: " + zipcode)
+	correct = input("Does this information look correct? (y/n): ")
+	if correct == 'y':
+		payment = PaymentObject(card_nu, exp, back_digits, zipcode)
+		break
+
+"""
+correct = input("Are you ready to place your order? (y/n): "
+if correct == 'y':
+	response = order.place(payment)
+	print(response)
+
+while True:
+	print("Now we wait for your order")
+	pizza = input("Enter q when pizza arrives")
+	if pizza == 'q':
+		break
+"""
