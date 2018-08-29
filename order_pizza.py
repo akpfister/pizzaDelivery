@@ -3,7 +3,7 @@
 # Using pizzapi package from https://github.com/gamagori/pizzapi
 from pizzapi import *
 
-#helper functions
+# HELPER FUNCTIONS
 
 def get_address(): 
 	print("We need your delivery address to get started.\n")
@@ -22,30 +22,7 @@ def get_contact_info(filler):
 	cust = Customer(first, last, email, filler)
 	return cust
 
-#show information based on what was given	
-
-"""
-address = get_address() 
-
-print('\n' * 5)
-print(address.line2) #prints the whole address
-
-customer = get_contact_info(filler = address)
-
-print(customer.first_name)
-
-store = address.closest_store()
-
-print('\n' * 5)
-print(store.data) #prints some data about the closest store
-
-menu = store.get_menu()
-
-print('\n' * 5)
-print(menu.display()) #prints entire menu with codes
-"""
-
-# Main Prompt
+# MAIN PROMPT
 
 print("Welcome to my pizza delivery script.\nOrders will be made using Dominos Pizza.\n")
 
@@ -101,13 +78,16 @@ while True:
 	print(order.data)
 	print('\n' * 2)
 
-"""
-this is to validate the order and give a price
+# This is to validate the order and give a price
+print("We are validating the order.")
+validated = order.validate()
+print(validated)
 
-order.validate()
-order.price_url()
-"""
+# order.price_url()
+
+print("Simulation over")
 	
+"""
 # Gets card information ready for payment
 while True:
 	card_nu = input("Please enter the number of the card: ")
@@ -119,16 +99,44 @@ while True:
 	if correct == 'y':
 		payment = PaymentObject(card_nu, exp, back_digits, zipcode)
 		break
+"""
 
 """
+# Places order
 correct = input("Are you ready to place your order? (y/n): "
 if correct == 'y':
 	response = order.place(payment)
 	print(response)
+"""
 
+"""
+# Set to not let prompt end
 while True:
 	print("Now we wait for your order")
 	pizza = input("Enter q when pizza arrives")
 	if pizza == 'q':
 		break
+"""
+
+"""
+# Testing
+
+address = get_address() 
+
+print('\n' * 5)
+print(address.line2) #prints the whole address
+
+customer = get_contact_info(filler = address)
+
+print(customer.first_name)
+
+store = address.closest_store()
+
+print('\n' * 5)
+print(store.data) #prints some data about the closest store
+
+menu = store.get_menu()
+
+print('\n' * 5)
+print(menu.display()) #prints entire menu with codes
 """
