@@ -83,7 +83,9 @@ print("We are validating the order.")
 validated = order.validate()
 print(validated)
 
-# order.price_url()
+price = order.urls.price_url()
+
+print(price)
 
 print("Simulation over")
 	
