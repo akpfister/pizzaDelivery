@@ -19,7 +19,8 @@ def get_contact_info(filler):
 	first = input("First name: ")
 	last = input("Last name: ")
 	email = input("Email: ")
-	cust = Customer(first, last, email, filler)
+	phone = input("Phone number: ")
+	cust = Customer(first, last, email, phone, filler)
 	return cust
 
 # MAIN PROMPT
@@ -86,10 +87,7 @@ print(validated)
 price = order.urls.price_url()
 
 print(price)
-
-print("Simulation over")
 	
-"""
 # Gets card information ready for payment
 while True:
 	card_nu = input("Please enter the number of the card: ")
@@ -101,24 +99,22 @@ while True:
 	if correct == 'y':
 		payment = PaymentObject(card_nu, exp, back_digits, zipcode)
 		break
-"""
 
-"""
+# print("\nSimulation over\n")
+
 # Places order
-correct = input("Are you ready to place your order? (y/n): "
+correct = input("\nAre you ready to place your order? (y/n): ")
 if correct == 'y':
 	response = order.place(payment)
 	print(response)
-"""
 
-"""
 # Set to not let prompt end
 while True:
-	print("Now we wait for your order")
-	pizza = input("Enter q when pizza arrives")
+	print("\nNow we wait for your order")
+	pizza = input("\nEnter q when pizza arrives")
 	if pizza == 'q':
+		print("\n")
 		break
-"""
 
 """
 # Testing
