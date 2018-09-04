@@ -82,7 +82,7 @@ while True:
 # This is to validate the order and give a price
 print("We are validating the order.")
 validated = order.validate()
-print(validated)
+print(validated) #only prints a url
 
 price = order.urls.price_url()
 
@@ -100,8 +100,6 @@ while True:
 		payment = PaymentObject(card_nu, exp, back_digits, zipcode)
 		break
 
-# print("\nSimulation over\n")
-
 # Places order
 correct = input("\nAre you ready to place your order? (y/n): ")
 if correct == 'y':
@@ -115,26 +113,3 @@ while True:
 	if pizza == 'q':
 		print("\n")
 		break
-
-"""
-# Testing
-
-address = get_address() 
-
-print('\n' * 5)
-print(address.line2) #prints the whole address
-
-customer = get_contact_info(filler = address)
-
-print(customer.first_name)
-
-store = address.closest_store()
-
-print('\n' * 5)
-print(store.data) #prints some data about the closest store
-
-menu = store.get_menu()
-
-print('\n' * 5)
-print(menu.display()) #prints entire menu with codes
-"""
