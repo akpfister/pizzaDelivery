@@ -1,11 +1,10 @@
 #!/usr/bin/python
 
-# Using pizzapi package from https://github.com/gamagori/pizzapi
 from pizzapi import *
+from pizza import Pizza
 
 # HELPER FUNCTIONS
-
-def get_address(): 
+def get_address():
 	print("We need your delivery address to get started.\n")
 	street = input("Street: ")
 	city = input("City: ")
@@ -14,102 +13,50 @@ def get_address():
 	address = Address(street, city, state, zip_code)
 	return address
 
-def get_contact_info(filler):
+def get_contact_info(addr):
 	print("Next we need some contact info.\n")
 	first = input("First name: ")
 	last = input("Last name: ")
 	email = input("Email: ")
 	phone = input("Phone number: ")
-	cust = Customer(first, last, email, phone, filler)
+	cust = Customer(first, last, email, phone, addr)
 	return cust
 
-# MAIN PROMPT
-
-print("Welcome to my pizza delivery script.\nOrders will be made using Dominos Pizza.\n")
+print("Welcome to my pizza delivery script, orders will be made using Dominos Pizza.\n")
 
 # Retrieves address
-while True:
+correct = 'n'
+while correct == 'n':
 	address = get_address()
 	print('\n' + address.line1)
 	print(address.line2 + '\n')
 	correct = input("Does this information look correct? (y/n): ")
-	if correct == 'y':
-		print("\nAwesome, let's continue.\n")
-		break
+	# if correct == 'y':
+    #   break
 
+correct = 'n'
 # Retrieves contact information
-while True:
+while correct == 'n':
 	customer = get_contact_info(address)
-	print('\n' + customer.first_name + '\n') #add function to cleanly print details
+	print('\n' + customer.first_name + ' ' + customer.last_name + '\n' + customer.email + '\n' + customer.phone + '\n') #add function to cleanly print details
 	correct = input("Does this information look correct? (y/n): ")
-	if correct == 'y':
-		print("\nAwesome, let's continue.\n")
-		break
 
 # Finds closest store to address
+print("Getting store.\n")
 store = address.closest_store()
-print("The closest store to your address is:\n")
-print(str(store.data) + '\n') #prints some data about the closest store
 
-# Gets menu and asks if the user wants the whole menu or just search
-menu = store.get_menu()
-while True:
-	menu_choice = input("Type 'see menu', enter an item to search or 'done': ")
-	if menu_choice == 'done':
-		break
-	if menu_choice == 'see menu':
-		print(menu.display()) #prints entire menu with codes
-	if str(menu.search(Name=menu_choice)) == 'None':
-		print("No results shown. Please try searching another item.\n")
-	else: 
-		print(str(menu.search(Name=menu_choice)))
+#initialize Pizza object used to carry out ordering sequence
+print("Making Pizza object.\n")
+domino = Pizza(address, customer, store)
 
-# Gets order together for the user
-order = Order(store, customer, address)
-while True:
-	order_choice = input("Would you like to add or remove an item? ")
-	if order_choice == 'q':
-		break
-	if order_choice == 'add':
-		item = input("Enter an item to add to the order: ")
-		order.add_item(item)
-	if order_choice == 'remove':
-		item = input("Enter an item to remove from the order: ")
-		order.remove_item(item)
-	print(order.data)
-	print('\n' * 2)
+#displays menu
+domino.see_menu()
 
-# This is to validate the order and give a price
-print("We are validating the order.")
-validated = order.validate()
-print(validated) #only prints a url
+#add/remove items for an order
+domino.make_order()
 
-price = order.urls.price_url()
+#payment information
+domino.card_info()
 
-print(price)
-	
-# Gets card information ready for payment
-while True:
-	card_nu = input("Please enter the number of the card: ")
-	exp = input("Expiration date: ")
-	back_digits = input("CVV info: ")
-	zipcode = input("Zipcode: ")
-	print("Card number: " + card_nu + "\nExpiration Date: " + exp + "\nCVV: " + back_digits + "\nZipcode: " + zipcode)
-	correct = input("Does this information look correct? (y/n): ")
-	if correct == 'y':
-		payment = PaymentObject(card_nu, exp, back_digits, zipcode)
-		break
-
-# Places order
-correct = input("\nAre you ready to place your order? (y/n): ")
-if correct == 'y':
-	response = order.place(payment)
-	print(response)
-
-# Set to not let prompt end
-while True:
-	print("\nNow we wait for your order")
-	pizza = input("\nEnter q when pizza arrives")
-	if pizza == 'q':
-		print("\n")
-		break
+#when ready, will place the order
+# domino.place_order()
