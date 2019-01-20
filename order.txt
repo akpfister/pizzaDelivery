@@ -1,22 +1,19 @@
-1050 Columbus Ave Apt 9
-Chico
+123 Street
+Sacramento
 CA
-95926
+12345
 y
-Aaron
-Pfister
-akpfister@live.com
-5304160250
+First
+Last
+example@email.com
+1111111111
 y
-see menu
-done
+no
 add
 2LCOKE
-W14PBBQW
-q
+done
 1111111111111111
 09/12
 111
 95926
-y
-q
+yes
