@@ -4,17 +4,17 @@ Pizza Delivery is a Python script you can use to make an order from Domino's wit
 
 ## What You Need
 
-Use pip to install necessary packages.
-
-```bash
-pip install -r requirements.txt
-```
-
 I recommend using virtualenv to create a virtual environment for the project.
 
 ```bash
 python3 -m virtualenv venv
 source venv/bin/activate
+```
+
+Use pip to install necessary packages.
+
+```bash
+pip install -r requirements.txt
 ```
 
 ## Usage
